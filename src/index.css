@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+}
+
+@theme {
+    --shadow-red:0 0 5px rgba(255, 255, 255, 0.5);
+
+    --color-navbar-bg: #212121;
+    --color-main-bg: #181818;
+    --color-main: white;
+    --color-soft: #ddd;
+    --color-dark: #2a3447;
+}
+
+body {
+    font-family: "Ubuntu", sans-serif;
+    background: var(--color-main-bg);
+    font-size: 1.2rem;
+    color: var(--color-soft);
+}
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-zinc-700);
+    border-radius: 1rem;
+}
+
+@layer utilities {
+    .nav-btn {
+        @apply p-2 bg-zinc-900 rounded-xl transition-all duration-400 cursor-pointer;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    .nav-btn:hover {
+        @apply bg-transparent;
+    }
+
+    .sidebar-link {
+        @apply pl-6 py-3 transition-all duration-400 cursor-pointer;
+
+    }
+    .sidebar-link:hover {
+        @apply bg-zinc-800;
+         box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+
+}
+
+@layer components {
+    .input-modal {
+        @apply w-full h-14 border border-[var(--border-color)] bg-transparent outline-none p-2 rounded-lg;
+    }
+
+    .input-modal:focus {
+        @apply border-[var(--next-color)];
+    }
+}
