@@ -41,13 +41,21 @@ export type RecommendedVideos = {
   channelInfo: Omit<ChannelInfo, 'subscribers' | 'image'>;
 } & BaseVideo
 
+type Snippets = {
+  title: string;
+  thumbnails: { medium: { url: string } };
+  publishedAt: string;
+  channelTitle: string;
+  channelId: string;
+  description: string;
+}
+
 export type Item = {
-  snippet: {
-    title: string;
-    thumbnails: { medium: { url: string } };
-    publishedAt: Date;
-    channelTitle: string;
-    channelId: string;
-  };
+  snippet: Omit<Snippets, 'description'>;
   contentDetails: { upload: { videoId: string } };
 }
+
+export type YouTubeSearchItem = {
+  id: { videoId: string };
+  snippet: Snippets;
+};

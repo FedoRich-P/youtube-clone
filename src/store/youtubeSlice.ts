@@ -31,10 +31,12 @@ export const youtubeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
+      if(!action.payload) return state;
       state.videos = action.payload.parsedData;
       state.nextPageToken = action.payload.nextPageToken;
     });
     builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
+      if(!action.payload) return state;
       state.videos = action.payload.parsedData;
       state.nextPageToken = action.payload.nextPageToken;
     });

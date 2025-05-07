@@ -6,7 +6,7 @@
 }
 
 @theme {
-    --shadow-red:0 0 5px rgba(255, 255, 255, 0.5);
+    --shadow-white:0 0 5px rgba(255, 255, 255, 0.5);
 
     --color-navbar-bg: #212121;
     --color-main-bg: #181818;
@@ -33,6 +33,13 @@ body {
 }
 
 @layer utilities {
+    .search-btn {
+        @apply h-full px-5 flex items-center justify-center bg-zinc-800 cursor-pointer rounded-e-xl shadow-lg transition-all duration-400;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    .search-btn:hover {
+        @apply bg-transparent;
+    }
     .nav-btn {
         @apply p-2 bg-zinc-900 rounded-xl transition-all duration-400 cursor-pointer;
         box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
