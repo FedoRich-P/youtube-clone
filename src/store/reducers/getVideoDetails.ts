@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_KEY, YOUTUBE_API_URL } from '../../utils/constants.ts';
-
+import { convertRawViewsToString } from '../../utils/convertRawViewstoString.ts';
+import { timeSince } from '../../utils/timeSince.ts';
 
 
 export const getVideoDetails = createAsyncThunk(
@@ -50,13 +51,13 @@ const parseData = async (item: {
     videoTitle: item.snippet.title,
     videoDescription: item.snippet.description,
     videoViews: parseInt(item.statistics.viewCount).toLocaleString(),
-    videoLikes: convertRawViewstoString(item.statistics.likeCount),
+    videoLikes: convertRawViewsToString(item.statistics.likeCount),
     videoAge: timeSince(new Date(item.snippet.publishedAt)),
     channelInfo: {
       id: item.snippet.channelId,
       image: channelImage,
       name: item.snippet.channelTitle,
-      subscribers: convertRawViewstoString(subscriberCount, true),
+      subscribers: convertRawViewsToString(subscriberCount, true),
     },
   };
 };

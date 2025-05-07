@@ -3,9 +3,10 @@ import type { RootState } from '../index.ts';
 import axios from 'axios';
 import { API_KEY, YOUTUBE_API_URL } from '../../utils/constants.ts';
 import type { HomePageVideos } from '../../Types.ts';
+import { parseData } from '../../utils/parseData.ts';
 
 export const getSearchPageVideos = createAsyncThunk(
-  "youtubeApp/serachPageVideos",
+  "youtubeApp/searchPageVideos",
   async (isNext: boolean, { getState }) => {
     const {
       youtubeApp: { nextPageToken: nextPageTokenFromState, videos, searchTerm },
@@ -17,7 +18,8 @@ export const getSearchPageVideos = createAsyncThunk(
         isNext ? `pageToken=${nextPageTokenFromState}` : ""
       }`
     );
-    const parsedData: HomePageVideos[] = await parseData(items);
+    const parsedData: HomePageVideos[] | undefined = await parseData(items);
+    if(!parsedData) return
     return { parsedData: [...videos, ...parsedData], nextPageToken };
   }
 );
